@@ -38,7 +38,7 @@ ITEM_PIPELINES = [
 # COLLECTOR_TASK_COUNT = 10  # 每次获取任务数量
 #
 # # SPIDER
-# SPIDER_THREAD_COUNT = 1  # 爬虫并发数
+SPIDER_THREAD_COUNT = 6  # 爬虫并发数
 # SPIDER_SLEEP_TIME = 0  # 下载时间间隔（解析完一个response后休眠时间）
 # SPIDER_TASK_COUNT = 1  # 每个parser从内存队列中获取任务的数量
 # SPIDER_MAX_RETRY_TIMES = 100  # 每个请求最大重试次数
@@ -74,18 +74,18 @@ ITEM_PIPELINES = [
 # RESPONSE_CACHED_USED = False  # 是否使用缓存 补采数据时可设置为True
 #
 # # 设置代理
-PROXY_EXTRACT_API = "http://tunnel-api.apeyun.com/q?id=2021051400001121218&secret=R03TtWxOTKbUxVWA&limit=10&format=txt&auth_mode=hand"  # 代理提取API ，返回的代理分割符为\r\n
-PROXY_ENABLE = False
+PROXY_EXTRACT_API = "http://tunnel-api.apeyun.com/d?id=2021051400001121218&secret=R03TtWxOTKbUxVWA&limit=5&format=txt&auth_mode=hand&min=3"  # 代理提取API ，返回的代理分割符为\r\n
+PROXY_ENABLE = True
 #
 # # 随机headers
-# RANDOM_HEADERS = True
+RANDOM_HEADERS = True
 # # 默认使用的浏览器头 RANDOM_HEADERS=True时不生效
 # DEFAULT_USERAGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"
 # # requests 使用session
 # USE_SESSION = False
 #
 # # 去重
-# ITEM_FILTER_ENABLE = False  # item 去重
+ITEM_FILTER_ENABLE = True # item 去重
 REQUEST_FILTER_ENABLE = True # request 去重
 #
 # # 报警 支持钉钉、企业微信、邮件
@@ -106,11 +106,11 @@ REQUEST_FILTER_ENABLE = True # request 去重
 # WARNING_LEVEL = "DEBUG"  # 报警级别， DEBUG / ERROR
 # WARNING_FAILED_COUNT = 1000  # 任务失败数 超过WARNING_FAILED_COUNT则报警
 #
-# LOG_NAME = os.path.basename(os.getcwd())
-# LOG_PATH = "log/%s.log" % LOG_NAME  # log存储路径
-# LOG_LEVEL = "DEBUG"
-# LOG_IS_WRITE_TO_FILE = False
-# OTHERS_LOG_LEVAL = "ERROR"  # 第三方库的log等级
+LOG_NAME = os.path.basename(os.getcwd())
+LOG_PATH = "log/%s.log" % LOG_NAME  # log存储路径
+LOG_LEVEL = "INFO"
+LOG_IS_WRITE_TO_FILE = False
+OTHERS_LOG_LEVAL = "ERROR"  # 第三方库的log等级
 #
 # # 切换工作路径为当前项目路径
 # project_path = os.path.abspath(os.path.dirname(__file__))

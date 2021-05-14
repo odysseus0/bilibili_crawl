@@ -12,12 +12,9 @@ from items.video_item import VideoItem
 
 
 class Video(feapder.Spider):
-    # this is the setting for the REDIS database used to support cralwer functionalities
-    # __custom_setting__ = dict(
-    #     REDISDB_IP_PORTS="localhost:6379", REDISDB_USER_PASS="", REDISDB_DB=0
-    # )
     # specify the maximum number of depth when running BFS on content recommendation
     __MAX_DEPTH__ = 2
+    __SEED_BVID__ = "BV1oJ411M7RS"
 
     def view_request(self, bvid):
         return feapder.Request(f"https://api.bilibili.com/x/web-interface/view?bvid={bvid}")
@@ -28,11 +25,10 @@ class Video(feapder.Spider):
 
     def start_requests(self):
         # this is the ID of the seed video
-        bvid = "BV1oJ411M7RS"
         # request to retrieve the info about the seed video itself
-        yield self.view_request(bvid)
+        yield self.view_request(self.__SEED_BVID__)
         # request to retrieve related videos of the video
-        yield self.related_request(bvid)
+        yield self.related_request(self.__SEED_BVID__)
 
     def parse(self, request, response):
         data = response.json['data']
