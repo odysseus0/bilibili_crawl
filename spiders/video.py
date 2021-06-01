@@ -16,9 +16,11 @@ class Video(feapder.Spider):
     __MAX_DEPTH__ = 2
     __SEED_BVID__ = "BV1oJ411M7RS"
 
+    @classmethod
     def view_request(self, bvid):
         return feapder.Request(f"https://api.bilibili.com/x/web-interface/view?bvid={bvid}")
 
+    @classmethod
     def related_request(self, bvid, depth=1):
         return feapder.Request(f"https://api.bilibili.com/x/web-interface/archive/related?bvid={bvid}",
                                callback=self.parse_related, depth=depth)
@@ -54,4 +56,8 @@ class Video(feapder.Spider):
 
 if __name__ == "__main__":
     # specify the redis key used for this crawling task and the number of threads
-    Video(redis_key="test", thread_count=4).start()
+    # Video(redis_key="test", thread_count=4).start()
+    spider = Video.to_DebugSpider(
+        redis_key="feapder:spider_test", request=Video.related_request(Video.__SEED_BVID__)
+    )
+    spider.start()
