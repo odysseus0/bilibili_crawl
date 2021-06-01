@@ -13,7 +13,7 @@ MYSQL_USER_PASS = ""
 # # MONGODB
 MONGO_IP = "localhost"
 MONGO_PORT = 27017
-MONGO_DB = "bilibili"
+MONGO_DB = "bilibili-test-2"
 MONGO_USER_NAME = ""
 MONGO_USER_PASS = ""
 #
@@ -35,13 +35,13 @@ ITEM_PIPELINES = [
 # # 爬虫相关
 # # COLLECTOR
 # COLLECTOR_SLEEP_TIME = 1  # 从任务队列中获取任务到内存队列的间隔
-# COLLECTOR_TASK_COUNT = 10  # 每次获取任务数量
+COLLECTOR_TASK_COUNT = 400  # 每次获取任务数量
 #
 # # SPIDER
-SPIDER_THREAD_COUNT = 6  # 爬虫并发数
-# SPIDER_SLEEP_TIME = 0  # 下载时间间隔（解析完一个response后休眠时间）
-# SPIDER_TASK_COUNT = 1  # 每个parser从内存队列中获取任务的数量
-# SPIDER_MAX_RETRY_TIMES = 100  # 每个请求最大重试次数
+SPIDER_THREAD_COUNT = 200  # 爬虫并发数
+SPIDER_SLEEP_TIME = 0  # 下载时间间隔（解析完一个response后休眠时间）
+SPIDER_TASK_COUNT = 1  # 每个parser从内存队列中获取任务的数量
+SPIDER_MAX_RETRY_TIMES = 50  # 每个请求最大重试次数
 # AUTO_STOP_WHEN_SPIDER_DONE = True  # 爬虫是否自动结束
 #
 # # 浏览器渲染
@@ -66,7 +66,7 @@ SPIDER_THREAD_COUNT = 6  # 爬虫并发数
 # # request防丢机制。（指定的REQUEST_LOST_TIMEOUT时间内request还没做完，会重新下发 重做）
 # REQUEST_LOST_TIMEOUT = 600  # 10分钟
 # # request网络请求超时时间
-# REQUEST_TIMEOUT = 22  # 等待服务器响应的超时时间，浮点数，或(connect timeout, read timeout)元组
+REQUEST_TIMEOUT = 100  # 等待服务器响应的超时时间，浮点数，或(connect timeout, read timeout)元组
 #
 # # 下载缓存 利用redis缓存，但由于内存大小限制，所以建议仅供开发调试代码时使用，防止每次debug都需要网络请求
 # RESPONSE_CACHED_ENABLE = False  # 是否启用下载缓存 成本高的数据或容易变需求的数据，建议设置为True
@@ -74,8 +74,8 @@ SPIDER_THREAD_COUNT = 6  # 爬虫并发数
 # RESPONSE_CACHED_USED = False  # 是否使用缓存 补采数据时可设置为True
 #
 # # 设置代理
-PROXY_EXTRACT_API = "http://tunnel-api.apeyun.com/d?id=2021051400001121218&secret=R03TtWxOTKbUxVWA&limit=5&format=txt&auth_mode=hand&min=3"  # 代理提取API ，返回的代理分割符为\r\n
-PROXY_ENABLE = True
+# PROXY_EXTRACT_API = "http://tunnel-api.apeyun.com/d?id=2021051400001121218&secret=R03TtWxOTKbUxVWA&limit=1&format=txt&auth_mode=basic&min=1"
+# PROXY_ENABLE = True
 #
 # # 随机headers
 RANDOM_HEADERS = True
